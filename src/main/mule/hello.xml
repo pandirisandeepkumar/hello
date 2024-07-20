@@ -20,5 +20,6 @@ output application/json
 "Welcome to CI/CD Process"]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="f05b80ff-afe3-426d-8e10-6fb839417778" message='"added logger"'/>
 	</flow>
 </mule>
