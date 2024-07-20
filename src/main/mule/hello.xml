@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="1f2de411-6628-4503-9ea9-0f5212789a6c" >
+		<http:listener-connection host="0.0.0.0" port="${http.port}" />
+	</http:listener-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="33ffe1a9-18c1-41ff-8c38-5beb1c203dd6" file="config.yaml" />
+	<flow name="helloFlow" doc:id="167f91b9-20a9-4870-8594-361525ea59e2" >
+		<http:listener doc:name="Listener" doc:id="ff6c6040-d437-40ca-bb78-7a523d25f916" config-ref="HTTP_Listener_config" path="/mule"/>
+		<logger level="INFO" doc:name="Logger" doc:id="defe992a-6a98-4592-bfb8-d0514d2901ae" message='#["Welcome to CI/CD Process"]'/>
+		<ee:transform doc:name="Transform Message" doc:id="428c8995-1081-43e0-b834-6b7705afaa86" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+"Welcome to CI/CD Process"]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>

@@ -1,0 +1,10 @@
+http:
+  port: "8081"
+
+
+deployement:
+  app:
+    runtime: 4.4.0
+  region: us-east-2
+  workers: 1
+  workerType: MICRO 
